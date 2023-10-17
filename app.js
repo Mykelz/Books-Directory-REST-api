@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+require('dotenv').config();
+
 
 const bookRoutes = require('./route/books');
 
@@ -20,9 +22,9 @@ app.use(bookRoutes);
 
 
 
-mongoose.connect('mongodb+srv://eze:Password0@cluster0.b3lqm9f.mongodb.net/Books')
+mongoose.connect(process.env.CONNECT)
     .then(result=>{
-        app.listen(6060);
+        app.listen(process.env.PORT);
     })
     .catch(err =>{
         console.log(err)

@@ -8,6 +8,8 @@ const router = express.Router();
 
 router.get('/books', bookController.getBooks);
 
+router.get('/book/:bookId', bookController.getBook)
+
 router.post('/book', bookController.postBook);
 
 router.put('/book/:bookId', bookController.editBook);

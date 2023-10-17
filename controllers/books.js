@@ -12,6 +12,18 @@ exports.getBooks = async(req, res, next) =>{
     }
 }
 
+exports.getBook = async(req, res, next)=>{
+    const bookId = req.params.bookId;
+    const book = await Book.findById(bookId);
+    res.status(200).json({
+        Book: {
+            title: book.title,
+            author: book.author,
+            year: book.year
+        }
+    })
+}
+
 exports.postBook = async(req, res, next) =>{
     title = req.body.title,
     author = req.body.author,

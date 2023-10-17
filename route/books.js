@@ -10,9 +10,9 @@ router.get('/books', bookController.getBooks);
 
 router.post('/book', bookController.postBook);
 
-router.put('/book/:bookId');
+router.put('/book/:bookId', bookController.editBook);
 
-router.delete('/book/:bookId')
+router.delete('/book/:bookId', bookController.deleteBook)
 
 
 module.exports = router;

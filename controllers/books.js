@@ -39,12 +39,34 @@ exports.postBook = async(req, res, next) =>{
         }
 }
 
-exports.editBook = (req, res, next) =>{
+exports.editBook = async(req, res, next) =>{
+    const bookId = req.params.bookId;
+    const title = req.body.title;
+    const author = req.body.author;
+    const year = req.body.year;
+    try {
+        const book = await Book.findById(bookId);
+        book.title = title,
+        book.author = author, 
+        book.year = year
 
+        const updatedBook = await book.save()
+        res.status(201).json({
+            message: "Book Updated Successfully",
+            Book: updatedBook
+        })
+    }
+    catch(err){
+        console.log(err)
+    }
 }
 
-exports.deleteBook = (req, res, next) =>{
-
+exports.deleteBook = async (req, res, next) =>{
+    const bookId = req.params.bookId;
+    await Book.findByIdAndDelete(bookId);
+    res.status(200).json({
+        message: "Book deleted!"
+    })
 }
 
 
